@@ -1,0 +1,282 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+}
+
+nav {
+    background-color: rgb(64, 238, 250);
+    padding: 10px;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: auto;
+}
+
+nav h3 {
+    font-size: 20px;
+}
+
+.btn_input {
+    background-color: rgb(183, 223, 255);
+    border: none;
+    padding: 5px;
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
+    transition: all .3s ease;
+}
+
+.btn_input:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+}
+
+.btn_input:active {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+    background-color: rgb(160, 212, 255);
+}
+
+.link {
+    color: rgb(0, 85, 155);
+    text-decoration: none;
+    padding: 5px;
+    font-size: 18px;
+}
+
+form {
+    background-color: rgb(255, 255, 255);
+    color: rgb(30, 30, 30);
+    max-width: 350px;
+    margin: auto;
+    border: 1px solid rgb(239, 239, 239);
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin-top: 20px;
+    transition: all .3s ease;
+}
+
+form:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+}
+
+form h2 {
+    text-align: center;
+    margin-top: 10px;
+    font-weight: normal;
+}
+
+form label {
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+form input {
+    margin-top: 10px;
+    margin-left: 10px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(183, 223, 255);
+    width: 90%;
+    height: 30px;
+    box-sizing: border-box;
+    padding: 12px;
+    transition: all .3s ease;
+
+}
+
+form input:hover {
+    border: 1px solid rgb(148, 207, 255);
+}
+
+form input:focus {
+    outline: rgb(98, 184, 255);
+    border-color: rgb(26, 152, 255);
+}
+
+form textarea {
+    margin-top: 10px;
+    margin-left: 10px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(183, 223, 255);
+    width: 90%;
+    height: 200px;
+    max-width: 90%;
+    box-sizing: border-box;
+    padding: 12px;
+    transition: all .3s ease;
+}
+
+form textarea:hover {
+    border: 1px solid rgb(148, 207, 255);
+}
+
+form textarea:focus {
+    outline: rgb(98, 184, 255);
+    border-color: rgb(26, 152, 255);
+}
+
+form .file {
+    height: 50px;
+}
+
+.form-p {
+    text-align: center;
+    margin: 10px;
+}
+
+form button, button {
+    font-size: 20px;
+    padding: 10px;
+    margin: auto;
+    display: block;
+    text-decoration: none;
+    background-color: rgb(183, 223, 255);
+    border: none;
+    margin-top: 15px;
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
+    transition: all .3s ease;
+}
+
+form button:hover, button:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+}
+
+form button:active, button:active {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+    background-color: rgb(160, 212, 255);
+}
+
+form a {
+    text-decoration: none;
+}
+
+.form_signup {
+    margin-top: 0px;
+}
+
+.signup_form h2 {
+    font-size: xx-large;
+    text-align: center;
+}
+
+.posts_container {
+    padding: 10px;
+    max-width: 1300px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+.posts_container h1 {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.post-item {
+    padding: 20px;
+    border: 1px solid rgb(239, 239, 239);
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    max-width: 600px;
+    width: 600px;
+    margin: 10px;
+    color: rgb(30, 30, 30);
+    transition: all .3s ease;
+}
+
+
+.post-text {
+    text-overflow: ellipsis;
+    height: 200px;
+}
+
+@media screen and (max-width: 1300px) {
+    .post-item {
+        width: 100%;
+        margin: auto;
+        max-width: none;
+    }
+
+    .posts_container {
+        margin: auto;
+        max-width: 600px;
+    }
+
+    .post-text {
+        text-overflow: ellipsis;
+        height: 200px;
+    }
+}
+
+.post-item:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+}
+
+.post-item img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+}
+
+.post-text {
+    margin: 20px 0 30px;
+}
+.post-item h2 {
+    font-size: 160%;
+    line-height: 1.2;
+    padding-top: 10px;
+}
+
+/* Post */
+
+
+.post_title_h1 {
+    text-align: center;
+    font-size: xx-large;
+    margin: 10px;
+}
+
+.post_container {
+    padding: 10px;
+    border: 1px solid rgb(239, 239, 239);
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    max-width: 800px;
+    width: 95%;
+    margin: auto;
+    margin-bottom: 10px;
+    color: rgb(30, 30, 30);
+    transition: all .3s ease;
+}
+
+.post_container:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+}
+
+.post-email {
+    font-size: 120%;
+    margin-top: 10px;
+}
+
+.post_container img {
+    width: 100%;
+}
+
+.post-text {
+    margin: 20px 0 30px;
+}
+
+.post-item h2 {
+    font-size: 160%;
+    line-height: 1.2;
+    padding-top: 10px;
+}
