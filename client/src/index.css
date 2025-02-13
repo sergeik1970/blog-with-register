@@ -16,6 +16,7 @@ a {
 nav {
     background-color: rgb(64, 238, 250);
     padding: 10px;
+    width: 100%;
 }
 
 .nav-content {
@@ -133,7 +134,8 @@ form .file {
     margin: 10px;
 }
 
-form button, button {
+form button,
+button {
     font-size: 20px;
     padding: 10px;
     margin: auto;
@@ -146,11 +148,13 @@ form button, button {
     transition: all .3s ease;
 }
 
-form button:hover, button:hover {
+form button:hover,
+button:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
 }
 
-form button:active, button:active {
+form button:active,
+button:active {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
     background-color: rgb(160, 212, 255);
 }
@@ -187,7 +191,7 @@ form a {
     box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
     text-decoration: none;
     max-width: 600px;
-    width: 600px;
+    width: 100%;
     margin: 10px;
     color: rgb(30, 30, 30);
     transition: all .3s ease;
@@ -195,15 +199,23 @@ form a {
 
 
 .post-text {
+    /* !!!!!!!!!!!!!!!!!!!!! */
+    /* height: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis; */
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    /* max-width: 200px; */
+    overflow: hidden;
     text-overflow: ellipsis;
-    height: 200px;
+    height:100px;
 }
 
 @media screen and (max-width: 1300px) {
     .post-item {
-        width: 100%;
         margin: auto;
-        max-width: none;
+        margin-bottom: 10px;
     }
 
     .posts_container {
@@ -213,7 +225,8 @@ form a {
 
     .post-text {
         text-overflow: ellipsis;
-        height: 200px;
+        /* height: 200px; */
+        ;
     }
 }
 
@@ -230,6 +243,7 @@ form a {
 .post-text {
     margin: 20px 0 30px;
 }
+
 .post-item h2 {
     font-size: 160%;
     line-height: 1.2;

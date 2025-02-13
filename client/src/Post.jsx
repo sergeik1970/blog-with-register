@@ -9,6 +9,17 @@ function Post() {
     const [post, setPost] = useState({})
     const navigate = useNavigate()
     const user = useContext(userContext)
+
+    const handleDelete = (e) => {
+        axios.delete('http://localhost:3001/deletepostbyid/' + id)
+            .then(res => {
+                window.location.href = "/"
+                console.log(res)
+
+            })
+            .catch(err => console.log(err))
+
+    }
     useEffect(() => {
         axios.get('http://localhost:3001/getpostbyid/' + id)
             .then(result => {
@@ -24,6 +35,8 @@ function Post() {
                 <img src={`http://localhost:3001/images/${post.file}`} alt="" />
                 <p className="post-description">{post.description}</p>
                 <p className="post-email">By <b>{post.username}</b></p>
+                <button onClick={handleDelete}>Удалить</button>
+                <button>Редактировать</button>
             </div>
         </div>
     )
