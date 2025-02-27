@@ -24,17 +24,17 @@ function Login() {
     return (
         <div className="signup_container">
             <div className="signup_form">
-                <h2>Login</h2>
+                <h2>Вход</h2>
                 <br />
                 <form onSubmit={handleSubmit} className="form_signup">
                     <div>
-                        <label htmlFor="email">Email:</label> <br />
+                        <label htmlFor="email">Электронная почта:</label> <br />
                         <input type="text" placeholder="Enter email..." 
                             onChange={e => setEmail(e.target.value)} />
                     </div>
                     <br />
                     <div>
-                        <label htmlFor="password">Password:</label> <br />
+                        <label htmlFor="password">Пароль:</label> <br />
                         <input type="password" placeholder="********" 
                             onChange={e => setPassword(e.target.value)}/>
                     </div>

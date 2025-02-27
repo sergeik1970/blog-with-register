@@ -22,13 +22,13 @@ const Navbar = () => {
             <div className="nav-content">
                 <h3>MERN Blog App</h3>
                 <div>
-                    <a href="/" className='link'>Home</a>
+                    <a href="/" className='link'>Главная</a>
                     {
                         user.username ?
-                        <Link to="/create" className='link'>Create</Link>
+                        <Link to="/create" className='link'>Новая запись</Link>
                         : <></>
                     }
-                    <a href="" className='link'>Contact</a>
+                    <a href="" className='link'>Контакты</a>
                 </div>
                 {
                     user.username ?
@@ -37,7 +37,7 @@ const Navbar = () => {
                         <input type="button" onClick={handleLogout} value='Logout' className='btn_input'/>
                     </div>
                     :
-                    <div><Link to="/register" className="link">Register/Login</Link></div>
+                    <div><Link to="/register" className="link">Регистрация/Вход</Link></div>
                 }
             </div>
         </nav>

@@ -11,15 +11,17 @@ function Post() {
     const user = useContext(userContext)
 
     const handleDelete = (e) => {
-        axios.delete('http://localhost:3001/deletepostbyid/' + id)
-            .then(res => {
-                window.location.href = "/"
-                console.log(res)
+        if (window.confirm('Вы действительно хотите удалить пост?')) {
+            axios.delete('http://localhost:3001/deletepostbyid/' + id)
+                .then(res => {
+                    window.location.href = "/"
+                    console.log(res)
 
-            })
-            .catch(err => console.log(err))
-
+                })
+                .catch(err => console.log(err))
+        }
     }
+
     useEffect(() => {
         axios.get('http://localhost:3001/getpostbyid/' + id)
             .then(result => {
@@ -35,8 +37,15 @@ function Post() {
                 <img src={`http://localhost:3001/images/${post.file}`} alt="" />
                 <p className="post-description">{post.description}</p>
                 <p className="post-email">By <b>{post.username}</b></p>
-                <button onClick={handleDelete}>Удалить</button>
-                <button>Редактировать</button>
+                {
+                    user.email === post.email ?
+                        <div className="buttons">
+                            <button onClick={handleDelete}>Удалить</button>
+                            <button><Link to={`/editpostbyid/${post._id}`} className='link'>Редактировать</Link></button>
+                        </div>
+                        : null
+                }
+
             </div>
         </div>
     )

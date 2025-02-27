@@ -128,18 +128,19 @@ app.get('/getpostbyid/:id', (req, res) => {
     .catch(err => res.json(err))
 })
 
-// app.edit('/editpostbyid/:id', (req, res) => {
-//     const id = req.params.id;
-//     PostModel.findByIdAndUpdate({_id: id}, req.body)
-//     .then(post => res.json(post))
-//     .catch(err => res.json(err))
-// })
-
 app.delete('/deletepostbyid/:id', (req, res) => {
     const id = req.params.id;
     PostModel.findByIdAndDelete({_id: id})
     .then(post => res.json(post))
     .catch(err => res.json(err))
+})
+
+app.put('/editpostbyid/:id', (req, res) => {
+    const id = req.params.id;
+    PostModel.findByIdAndUpdate({_id: id}, {title: req.body.title, description: req.body.description})
+    .then(post => res.json("Success"))
+    .catch(err => res.json(err))
+
 })
 
 app.listen(3001, function() {
