@@ -3,6 +3,8 @@ import { useState, useEffect, useContext } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { userContext } from "./App"
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 
 function Post() {
     const { id } = useParams()
@@ -12,9 +14,9 @@ function Post() {
 
     const handleDelete = (e) => {
         if (window.confirm('Вы действительно хотите удалить пост?')) {
-            axios.delete('http://localhost:3001/deletepostbyid/' + id)
+            axios.delete(`${apiUrl}deletepostbyid/${id}`)
                 .then(res => {
-                    window.location.href = "/"
+                    navigate("/");
                     console.log(res)
 
                 })
@@ -23,7 +25,7 @@ function Post() {
     }
 
     useEffect(() => {
-        axios.get('http://localhost:3001/getpostbyid/' + id)
+        axios.get(`${apiUrl}getpostbyid/${id}`)
             .then(result => {
                 setPost(result.data)
                 console.log(result.data)

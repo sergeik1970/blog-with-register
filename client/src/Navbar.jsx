@@ -3,13 +3,14 @@ import { useContext } from 'react';
 import { userContext } from './App';
 import axios from 'axios';
 
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const Navbar = () => {
     const user = useContext(userContext);
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        axios.get('http://localhost:3001/logout')
+        axios.get(`${apiUrl}logout`)
         .then(res => {
             if (res.data === 'Success')
             navigate(0)
@@ -20,7 +21,7 @@ const Navbar = () => {
     return (
         <nav className='navbar'>
             <div className="nav-content">
-                <h3>MERN Blog App</h3>
+                <h3>KDSV App</h3>
                 <div>
                     <a href="/" className='link'>Главная</a>
                     {

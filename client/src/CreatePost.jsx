@@ -2,6 +2,8 @@ import axios from "axios";
 import { useContext, useState } from "react"
 import { userContext } from "./App"
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 function CreatePost() {
     const [title, setTitle] = useState();
     const [description, setDescription] = useState();
@@ -17,7 +19,7 @@ function CreatePost() {
         formData.append("file", file)
         formData.append("username", user.username)
 
-        axios.post("http://localhost:3001/create", formData)
+        axios.post(`${apiUrl}create`, formData)
         .then(res => {
             if (res.data === "Success") {
                 window.location.href = "/"
@@ -31,17 +33,17 @@ return (
     <div className="post_container">
         <div className="post_form">
             <form className="post-form" onSubmit={handleSubmit}>
-                <h2>Create Post</h2>
-                <input type="text" placeholder="Enter Title" onChange={e => setTitle(e.target.value)} />
+                <h2>Новый пост</h2>
+                <input type="text" placeholder="Введите заголовок..." onChange={e => setTitle(e.target.value)} />
                 
                 <textarea name="desc"
                 id="desc" 
                 cols="30" 
                 rows="10" 
-                placeholder="Enter Description" onChange={e => setDescription(e.target.value)}></textarea>
-                <input type="file" className="file" placeholder="Select File"
+                placeholder="Введите текст..." onChange={e => setDescription(e.target.value)}></textarea>
+                <input type="file" className="file" placeholder="Выберите файл..."
                 onChange={e => setFile(e.target.files[0])} />
-                <button>Post</button>
+                <button>Опубликовать</button>
             </form>
         </div>
     </div>

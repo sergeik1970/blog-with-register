@@ -8,19 +8,20 @@ import cookieParser from 'cookie-parser';
 import UserModel from './models/UserModel.js';
 import PostModel from './models/PostModel.js';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
-console.log(app);
 app.use(express.json());
 app.use(cors({
-    origin: ['http://localhost:5173'],
+    origin: process.env.FRONTEND_URL,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }))
 app.use(cookieParser());
 app.use(express.static('public'));
 
-mongoose.connect('mongodb://localhost:27017/blog');
+mongoose.connect(process.env.MONGODB_URI);
 
 const verifyUser = (req, res, next) => {
     const token = req.cookies.token;
@@ -43,7 +44,6 @@ const verifyUser = (req, res, next) => {
 }
 
 app.get("/", verifyUser, (req, res) => {
-    console.log(res)
     return res.json({email: req.email, username: req.username})
 })
 
@@ -77,7 +77,7 @@ app.post("/register", (req, res) => {
     const {username, email, password} = req.body;
     bcrypt.hash(password, 10)
     .then(hash => {
-        UserModel.create({username, email, password: hash})
+        UserModel.create({username, email, password: hash, approved: true })
         .then(user => res.json(user))
         .catch(err => res.json(err))
     }).catch(err => res.json(err))

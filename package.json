@@ -1,0 +1,19 @@
+{
+  "name": "blog-with-register",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "server": "cd backend && nodemon server.js",
+    "client": "cd client && npm run dev",
+    "build-client": "cd client && npm install && npm run build",
+    "build-server": "cd backend && npm install",
+    "start-server": "cd backend && node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5"
+  }
+}

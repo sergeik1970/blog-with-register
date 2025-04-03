@@ -3,6 +3,8 @@ import { useContext, useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { userContext } from "./App"
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 function EditPost() {
     const { id } = useParams()
     const [title, setTitle] = useState();
