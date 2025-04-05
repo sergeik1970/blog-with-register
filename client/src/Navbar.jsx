@@ -29,7 +29,7 @@ const Navbar = () => {
                         <Link to="/create" className='link'>Новая запись</Link>
                         : <></>
                     }
-                    <a href="" className='link'>Контакты</a>
+                    <Link to="/contacts" className="link">Контакты</Link>
                 </div>
                 {
                     user.username ?
