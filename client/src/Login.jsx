@@ -11,7 +11,7 @@ function Login() {
     axios.defaults.withCredentials = true;
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post(`${apiUrl}login`, {email, password})
+        axios.post(`${apiUrl}/login`, {email, password})
         .then(res => {
             console.log(res.data)
             if(res.data == "Success") {
