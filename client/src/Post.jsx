@@ -14,7 +14,7 @@ function Post() {
 
     const handleDelete = (e) => {
         if (window.confirm('Вы действительно хотите удалить пост?')) {
-            axios.delete(`${apiUrl}deletepostbyid/${id}`)
+            axios.delete(`${apiUrl}/deletepostbyid/${id}`)
                 .then(res => {
                     navigate("/");
                     console.log(res)
@@ -25,7 +25,7 @@ function Post() {
     }
 
     useEffect(() => {
-        axios.get(`${apiUrl}getpostbyid/${id}`)
+        axios.get(`${apiUrl}/getpostbyid/${id}`)
             .then(result => {
                 setPost(result.data)
                 console.log(result.data)

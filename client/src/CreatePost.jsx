@@ -19,7 +19,7 @@ function CreatePost() {
         formData.append("file", file)
         formData.append("username", user.username)
 
-        axios.post(`${apiUrl}create`, formData)
+        axios.post(`${apiUrl}/create`, formData)
         .then(res => {
             if (res.data === "Success") {
                 window.location.href = "/"

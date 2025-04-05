@@ -10,7 +10,7 @@ const Navbar = () => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        axios.get(`${apiUrl}logout`)
+        axios.get(`${apiUrl}/logout`)
         .then(res => {
             if (res.data === 'Success')
             navigate(0)

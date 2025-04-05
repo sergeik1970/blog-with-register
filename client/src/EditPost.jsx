@@ -15,7 +15,7 @@ function EditPost() {
     const handleSubmit = (e) => {
         e.preventDefault(e);
 
-        axios.put(`${apiUrl}editpostbyid/${id}`, { title, description }, {
+        axios.put(`${apiUrl}/editpostbyid/${id}`, { title, description }, {
             withCredentials: true
           })
             .then(res => {
@@ -27,7 +27,7 @@ function EditPost() {
     }
 
     useEffect(() => {
-        axios.get(`${apiUrl}getpostbyid/${id}`, {
+        axios.get(`${apiUrl}/getpostbyid/${id}`, {
             withCredentials: true
           })
             .then(res => {

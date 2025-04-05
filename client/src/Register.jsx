@@ -12,7 +12,7 @@ const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post(`${apiUrl}register`, { username, email, password })
+        axios.post(`${apiUrl}/register`, { username, email, password })
         .then(res => navigate("/login"))
         .catch(err => 
             {alert("Registration failed. Please try again.")
