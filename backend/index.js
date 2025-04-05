@@ -13,11 +13,16 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-app.use(cors({
-    origin: process.env.FRONTEND_URL,
+const allowedOrigins = [
+    process.env.FRONTEND_URL,           // продакшн фронт
+    'http://localhost:5173'             // локальный фронт (Vite)
+  ];
+  
+  app.use(cors({
+    origin: allowedOrigins,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
-}))
+  }));
 app.use(cookieParser());
 app.use(express.static('public'));
 
@@ -77,6 +82,7 @@ app.post("/register", (req, res) => {
     const {username, email, password} = req.body;
     bcrypt.hash(password, 10)
     .then(hash => {
+        // потом изменить approved на false
         UserModel.create({username, email, password: hash, approved: true })
         .then(user => res.json(user))
         .catch(err => res.json(err))
