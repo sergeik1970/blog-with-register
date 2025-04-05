@@ -114,11 +114,19 @@ app.post("/login", (req, res) => {
     })
 })
 
-app.get("/logout", (req, res) => {
-    res.clearCookie("token")
-    return res.json("Success")
-})
+// app.get("/logout", (req, res) => {
+//     res.clearCookie("token")
+//     return res.json("Success")
+// })
 
+app.get("/logout", (req, res) => {
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None"
+    });
+    return res.json("Success");
+  });
 
 app.get('/getposts', (req, res) => {
     PostModel.find()
