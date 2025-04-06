@@ -36,7 +36,8 @@ function Post() {
         <div>
             <h1 className="post_title_h1">{post.title}</h1>
             <div className="post_container">
-                <img src={`http://localhost:3001/images/${post.file}`} alt="" />
+            <img src={post.file} alt="post" />
+                {/* <img src={`http://localhost:3001/images/${post.file}`} alt="" /> */}
                 <p className="post-description">{post.description}</p>
                 <p className="post-email">By <b>{post.username}</b></p>
                 {

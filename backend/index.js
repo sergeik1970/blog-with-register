@@ -53,31 +53,53 @@ app.get("/", verifyUser, (req, res) => {
     return res.json({ email: req.email, username: req.username })
 })
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'public/images')
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname))
-    }
-})
+const storage = multer.memoryStorage(); // 👈 сохраняем в память, а не в файл
+const upload = multer({ storage });
 
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, 'public/images')
+//     },
+//     filename: (req, file, cb) => {
+//         cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname))
+//     }
+// })
 
-const upload = multer({
-    storage: storage
-})
+// const upload = multer({
+//     storage: storage
+// })
 
-app.post("/create", verifyUser, upload.single("file"), (req, res) => {
-    PostModel.create({
+app.post("/create", verifyUser, upload.single("file"), async (req, res) => {
+    try {
+      const imageBase64 = req.file
+        ? `data:${req.file.mimetype};base64,${req.file.buffer.toString("base64")}`
+        : "";
+  
+      await PostModel.create({
         title: req.body.title,
         description: req.body.description,
-        file: req.file.filename,
+        file: imageBase64,
         email: req.body.email,
         username: req.body.username
-    })
-        .then(result => res.json("Success"))
-        .catch(err => res.json(err))
-})
+      });
+  
+      res.json("Success");
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
+// app.post("/create", verifyUser, upload.single("file"), (req, res) => {
+//     PostModel.create({
+//         title: req.body.title,
+//         description: req.body.description,
+//         file: req.file.filename,
+//         email: req.body.email,
+//         username: req.body.username
+//     })
+//         .then(result => res.json("Success"))
+//         .catch(err => res.json(err))
+// })
 
 app.post("/register", (req, res) => {
     const { username, email, password } = req.body;
