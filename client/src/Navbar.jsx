@@ -37,7 +37,7 @@ const Navbar = () => {
                     user.username ?
                         <div>
                             <span>{user.username}</span>&nbsp;
-                            <input type="button" onClick={handleLogout} value='Logout' className='btn_input' />
+                            <input type="button" onClick={handleLogout} value='Выйти' className='btn_input' />
                         </div>
                         :
                         <div><Link to="/register" className="link">Регистрация/Вход</Link></div>

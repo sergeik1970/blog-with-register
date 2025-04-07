@@ -158,7 +158,7 @@ app.get("/logout", (req, res) => {
 });
 
 app.get('/getposts', (req, res) => {
-    PostModel.find()
+    PostModel.find().sort({createdAt: -1}).limit(20)
         .then(posts => res.json(posts))
         .catch(err => res.json(err))
 })
