@@ -35,6 +35,7 @@ function Home() {
   };
 
   useEffect(() => {
+    alert("⚠️ Внимание: из-за особенностей хостинга и 'одарённых' пользователей, загрузка постов может занять до 90 секунд.");
     fetchPosts(); // первая загрузка
   }, []);
 
@@ -44,7 +45,7 @@ function Home() {
         posts.map(post => (
           <Link key={post._id} to={`/post/${post._id}`} className="post">
             <div className="post-item">
-              <img src={`${apiUrl}/images/${post.file}`} alt="" />
+              <img src={post.file} alt="" />
               <div className="post_text">
                 <h2>{post.title}</h2>
                 <p className="post-item-email">Автор: <b>{post.username}</b></p>

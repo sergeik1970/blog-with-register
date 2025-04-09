@@ -54,55 +54,48 @@ app.get("/", verifyUser, (req, res) => {
 })
 
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'public/images')
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname))
-    }
-})
+const storage = multer.memoryStorage();
 
 const upload = multer({
     storage: storage
 })
 
-// app.post("/create", verifyUser, upload.single("file"), async (req, res) => {
-//     try {
-//       const imageBase64 = req.file
-//         ? `data:${req.file.mimetype};base64,${req.file.buffer.toString("base64")}`
-//         : "";
-  
-//       await PostModel.create({
-//         title: req.body.title,
-//         description: req.body.description,
-//         file: imageBase64,
-//         email: req.body.email,
-//         username: req.body.username
-//       });
-  
-//       res.json("Success");
-//     } catch (err) {
-//       res.status(500).json(err);
-//     }
-//   });
-
 app.post("/create", verifyUser, upload.single("file"), async (req, res) => {
     try {
+      const imageBase64 = req.file
+        ? `data:${req.file.mimetype};base64,${req.file.buffer.toString("base64")}`
+        : "";
+  
       await PostModel.create({
         title: req.body.title,
         description: req.body.description,
-        file: req.file.filename, // только имя файла
+        file: imageBase64,
         email: req.body.email,
         username: req.body.username
       });
   
       res.json("Success");
     } catch (err) {
-      console.error("Ошибка при создании поста:", err);
       res.status(500).json(err);
     }
   });
+
+// app.post("/create", verifyUser, upload.single("file"), async (req, res) => {
+//     try {
+//       await PostModel.create({
+//         title: req.body.title,
+//         description: req.body.description,
+//         file: req.file.filename, // только имя файла
+//         email: req.body.email,
+//         username: req.body.username
+//       });
+  
+//       res.json("Success");
+//     } catch (err) {
+//       console.error("Ошибка при создании поста:", err);
+//       res.status(500).json(err);
+//     }
+//   });
 
 app.post("/register", (req, res) => {
     const { username, email, password } = req.body;
