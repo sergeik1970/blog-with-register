@@ -159,16 +159,37 @@ app.get("/logout", (req, res) => {
 
 app.get('/getposts', async (req, res) => {
     try {
+      const limit = 10;
+      const page = parseInt(req.query.page) || 1;
+const skip = (page - 1) * limit;
+  
       const posts = await PostModel.aggregate([
-        { $sort: { createdAt: -1 } }
-      ], { allowDiskUse: true }); // 👈 вот тут разрешаем использовать диск
+        { $sort: { createdAt: -1 } },
+        { $skip: skip },
+        { $limit: limit }
+      ], { allowDiskUse: true });
   
       res.json(posts);
     } catch (err) {
-      console.error("Ошибка при получении постов:", err);
+      console.error("Ошибка в /getposts:", err);
       res.status(500).json({ error: "Ошибка сервера при получении постов" });
     }
   });
+  
+
+// app.get('/getposts', async (req, res) => {
+//     try {
+//       const posts = await PostModel.aggregate([
+//         { $sort: { createdAt: -1 } }
+//       ], { allowDiskUse: true }); // 👈 вот тут разрешаем использовать диск
+  
+//       res.json(posts);
+//     } catch (err) {
+//       console.error("Ошибка при получении постов:", err);
+//       res.status(500).json({ error: "Ошибка сервера при получении постов" });
+//     }
+//   });
+
 // app.get('/getposts', (req, res) => {
 //     PostModel.find().sort({createdAt: -1}).limit(100)
 //         .then(posts => res.json(posts))
