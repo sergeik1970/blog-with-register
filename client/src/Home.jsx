@@ -44,7 +44,7 @@ function Home() {
         posts.map(post => (
           <Link key={post._id} to={`/post/${post._id}`} className="post">
             <div className="post-item">
-              <img src={post.file} alt="" />
+              <img src={`${apiUrl}/images/${post.file}`} alt="" />
               <div className="post_text">
                 <h2>{post.title}</h2>
                 <p className="post-item-email">Автор: <b>{post.username}</b></p>
