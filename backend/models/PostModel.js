@@ -8,7 +8,7 @@ const PostSchema = new mongoose.Schema({
     email: String,
     username: String,
     createdAt: { type: Date, default: Date.now }
-})
+}, { timestamps: true })
 
 const PostModel = mongoose.model("posts", PostSchema)
 

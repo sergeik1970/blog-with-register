@@ -157,11 +157,24 @@ app.get("/logout", (req, res) => {
     return res.json("Success");
 });
 
-app.get('/getposts', (req, res) => {
-    PostModel.find().sort({createdAt: -1}).limit(100)
-        .then(posts => res.json(posts))
-        .catch(err => res.json(err))
-})
+app.get('/getposts', async (req, res) => {
+    try {
+      const posts = await PostModel.aggregate([
+        { $sort: { createdAt: -1 } },
+        { $limit: 100 }
+      ], { allowDiskUse: true });
+  
+      res.json(posts);
+    } catch (err) {
+      console.error("Ошибка в /getposts:", err);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  });
+// app.get('/getposts', (req, res) => {
+//     PostModel.find().sort({createdAt: -1}).limit(100)
+//         .then(posts => res.json(posts))
+//         .catch(err => res.json(err))
+// })
 
 app.get('/getpostbyid/:id', (req, res) => {
     const id = req.params.id;
