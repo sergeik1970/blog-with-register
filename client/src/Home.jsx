@@ -256,7 +256,7 @@ function Home() {
   };
 
   useEffect(() => {
-    const timeout = setTimeout(() => setShowNotice(false), 10000);
+    const timeout = setTimeout(() => setShowNotice(false), 50000);
     fetchPosts(); // первая загрузка
     return () => clearTimeout(timeout);
   }, []);
